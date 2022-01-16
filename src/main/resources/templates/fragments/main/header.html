@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html mlns="http://www.thymelief.org">
+<header th:fragment="headerFragment">
+    <div style="margin-top:30px; margin-bottom:30px;">
+        <div class="container" style="width: 1000px; margin:auto; text-align:center;">
+            <div class="row main-header-box">
+                <div class="col vertical-align"><a href="/main"><img src="/img/home.jpg"></img></a></div>
+                <div class="col-6 vertical-align">
+                    <input type="search" class="form-control" style="display:inline; width:300px; pdding:0;">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </div>
+                <div sec:authorize="isAnonymous()" class="col vertical-alin" ><a href="/login/loginForm" class="btn btn-primary">Login</a></div>
+                <div sec:authorize="isAuthenticated()" class="col vertical-alin" >
+                    <a href="/logout">logout</a>
+                    <a href="/user/auth/info/myInfo">내정보</a>
+                </div>
+            </div>
+        </div>
+    </div>
+                                                        <!--navbar-->
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:50px;">
+            <div class="container-fluid" style="width:1000px;  margin:0 auto; text-align:center;">
+
+                <li class="nav-item dropdown" th:each="category : ${categories}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                       th:utext="${category.name}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
+                      <li th:each="board : ${category.boardList}">
+                          <a id="boardId" th:href="@{/board/list/}+${board.id}" class="dropdown-item" th:utext="${board.name}"></a>
+                      </li>
+                    </ul>
+                  </li>
+
+
+
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+

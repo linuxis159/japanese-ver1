@@ -1,0 +1,38 @@
+<html sec:authorize="isAuthenticated()" xmlns="http://www.thymelief.org"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/main/head :: headFragment">
+
+<body>
+<div style="list-style:none;">
+    <header th:replace="fragments/main/header :: headerFragment"></header>
+    <form th:action="@{/board/auth/post/write/}+${boardId}" method="post" th:object="${writingRequest}">
+        <div class="write-box">
+            <div class="write-title">
+                <input maxlength="100" th:field="*{title}" class="write-title-textarea form-control" type="text" required placeholder="title">
+            </div>
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+            <div>
+                <textarea  maxlength="1500"th:field="*{content}" class="write-article-textarea" required rows="12"></textarea>
+            </div>
+            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+            <input type="hidden" name="boardId" th:value="${boardId}">
+            <input type="hidden" name="userId" th:value="${#authentication.principal.username}">
+            <div class="btn-box">
+                <input  class="btn btn-primary"type="submit" value="작성">
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <footer th:replace="fragments/main/footer :: footerFragment"></footer>
+    <script th:src="@{\js\writePost.js}"></script>
+</div>
+
+
+</body>
+</html>
+
+
+

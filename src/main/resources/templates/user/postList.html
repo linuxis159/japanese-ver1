@@ -1,0 +1,37 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/main/head :: headFragment">
+
+<body>
+<header th:replace="fragments/main/header :: headerFragment"></header>
+<aside th:replace="fragments/user/aside :: asideFragment"></aside>
+<div style="list-style:none;" class="content">
+  <table class="table post-list">
+    <thead>
+    <tr>
+      <th class="post-title" scope="col">title</th>
+      <th class="post-writer" scope="col">writer</th>
+      <th class="post-date" scope="col">date</th>
+      <th class="post-view" scope="col">view</th>
+      <th class="post-like" scope="col">like</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+      <td class="post-title"><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
+      <td class="post-writer"th:utext="${post.user.name}"></td>
+      <td class="post-date"th:utext="${post.createdDate}"></td>
+      <td class="post-view"th:utext="${post.view}"></td>
+      <td class="post-like"th:utext="${post.recommendCount}"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+    <footer th:replace="fragments/main/footer :: footerFragment"></footer>
+
+
+</body>
+</html>

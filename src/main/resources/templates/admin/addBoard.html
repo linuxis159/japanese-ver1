@@ -1,0 +1,22 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/admin/head :: headFragment">
+
+<body>
+<div style="list-style:none;">
+    <header th:replace="fragments/admin/header :: headerFragment"></header>
+
+    <input type="text" id="boardname" placeholder="boardname">
+    <select id="selected">
+        <option>카테고리선택</option>
+        <option th:each="category : ${categories}" th:utext="${category.name}"
+                th:value="${category.id}"></option>
+    </select>
+    <input type="button" value="추가" id="addBoard" onclick="addBoard();">
+
+
+
+    <footer th:replace="fragments/admin/footer :: footerFragment"></footer>
+    <script th:src="@{/js/addBoard.js}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+body{
+    width:100%;
+    height:100%;
+    border-color:#dee2e6;
+    list-style:none;
+}
+li{
+    border 1px solid;
+    border-color:#ddd;
+}
+.vertical-align{
+
+    width:50%; margin:auto;
+}
+
+
+.join-row{
+    margin-bottom:20px;
+
+
+
+}
+.home{
+    width:400px;
+    margin:auto;
+    text-align:center;
+    padding-top:100px;
+    padding-bottom:50px;
+}
+.content{
+    width:1280;
+    margin:auto;
+}
+.postList-content{
+  width:1000px;
+  margin:auto;
+
+}
+.post-article{
+    width:700;
+    margin-bottom:200px;
+}
+.comment{
+    border-bottom:1px solid;
+    border-color:#ddd;
+    list-style:none;
+}
+
+.comment-article{
+    margin-top :20px;
+    margin-bottom:20px;
+}
+.active{
+    background-color:blue;
+    color:white;
+}
+.post-list{
+    width:1000px;
+    margin:auto;
+}
+
+.post-title{
+    width:500px;
+}
+
+.post-writer{
+    width:100px;
+}
+
+.post-date{
+    width:300px;
+}
+
+.post-view{
+    width:50px;
+}
+
+.post-like{
+    width:50px;
+}
+.write-box{
+    width:1280px;
+    border:1px solid;
+    border-color:#ddd;
+    padding:100px;
+    margin:auto;
+    margin-top:100px;
+}
+.write-title{
+    margin-top:100px;
+    margin-bottom:100px;
+}
+.write-title-textarea{
+    width:1077px;
+}
+.write-article{
+}
+.write-article-textarea{
+    padding:5px;
+    width:1077px;
+}
+.post-header{
+    margin-top:10px;
+    margin-bottom:30px;
+    padding-bottom:10px;
+    border-bottom :1px solid;
+    border-color:#ddd;
+}
+.comment-box{
+    margin-top:50px;
+    border:1px solid;
+    border-color:#ddd;
+    padding:20px;
+}
+.comment-box-area{
+    width:1000px;
+    height:250px;
+    margin-left:50px;
+}
+
+.comment-textarea{
+    height:
+    margin-top:20px;
+    width:1000px;
+
+}
+.comment-list{
+    padding:0px;
+    margin-top:100px;
+    padding-top:15px;
+    border-top :1px solid;
+
+}
+.footer{
+    border-top:1px solid;
+    border-color:#ddd;
+    margin-top :50px;
+    margin-bottom:50px;
+    padding-top:50px;
+    padding-bottom:50px;
+    text-align:center
+
+}
+.view-view-count{
+    padding-right:5px;
+    float:right;
+}
+.view-view-like{
+    float:right;
+}
+.join-Validation{
+    color:red;
+}
+.main-header{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.paging{
+    margin-top:40px;
+
+}
+.post-sort{
+    margin-top:20px;
+    padding:0;
+    list-style:none;
+}
+.postList-bottom-btn{
+    margin-top:20px;
+    margin-bottom:20px;
+    float:right;
+}
+
+.btn-box{
+    margin-top:20px;
+    margin-bottom:20px;
+    float:right;
+
+}
+
+.btn-comment-delete{
+    float:right;
+}
+.user-Info-main{
+    margin-left:250px;
+    padding:25px;
+}
+.user-info-myinfo{
+    width:400px;
+}
+.inline-form{
+    display:inline;
+    width:70%;
+
+}
+
+.main-header-box{
+    align-items: center;
+}

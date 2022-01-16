@@ -1,0 +1,28 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+    <head th:replace="fragments/main/head :: headFragment">
+
+    <body>
+      <div style="list-style:none;" class="content">
+        <header th:replace="fragments/main/header :: headerFragment"></header>
+          <div>
+
+             <table class="table w-auto small" style="width:600px; height:300px;">
+                 <div class="main-header">최신글</div>
+
+                  <tbody>
+                  <tr th:each="post : ${allPost}">
+                      <td><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
+                      <td th:utext="${post.createdDate}"></td>
+                      <td th:utext="${post.view}"></td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+          <ul class="pagination justify-content-center">
+           <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number-1})}">Previous</a></li>
+              <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number+1})}">Next</a></li>
+          </ul>
+          <footer th:replace="fragments/main/footer :: footerFragment"></footer>
+       </div> 
+    </body>
+ </html>   

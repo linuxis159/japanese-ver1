@@ -1,0 +1,32 @@
+<html sec:authorize="isAuthenticated()" xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/main/head :: headFragment">
+
+<body>
+<div>
+    <header th:replace="fragments/main/header :: headerFragment"></header>
+    <aside th:replace="fragments/user/aside :: asideFragment"></aside>
+    <div class="user-info-main">
+        <div class="user-info-myinfo">
+
+                <div>닉네임</div>
+                <input th:value="${user.name}"
+                       id="name" class="form-control inline-form"type="text">
+                <button class="btn btn-primary" onclick="updateName()">변경</button>
+                <div>이메일</div>
+                <input th:value="${user.email}" id="email" class="form-control inline-form"type="text">
+                <button class="btn btn-primary" id="emailControl" onclick="emailCheck()">인증</button>
+                <input type="text" id="codeCheck" style="display:none">
+                <input type="submit" id="submit" style="display:none">
+
+
+        </div>
+
+
+    </div>
+</div>
+<footer th:replace="fragments/main/footer :: footerFragment"></footer>
+<script th:src="@{/js/updateUserInfo.js}"></script>
+</body>
+</html>
+
+

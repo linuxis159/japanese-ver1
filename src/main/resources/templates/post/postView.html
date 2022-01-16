@@ -1,0 +1,73 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/main/head :: headFragment">
+
+<body>
+<div style="list-style:none;" class="content">
+    <header th:replace="fragments/main/header :: headerFragment"></header>
+    <div>
+    <div class="post-header">
+        <div><h5 th:utext="${post.title}"></h5></div>
+        <span th:utext="${post.user.name}"></span>
+        <span th:utext="${post.createdDate}"></span>
+        <span  class="view-view-like"th:utext="'추천:'+${post.recommendCount}"></span>
+        <span class="view-view-count"th:utext="'조회:'+${post.view}"></span>
+    </div>
+    <div class="post-article"th:utext="${post.content}"></div>
+
+
+
+
+
+
+    <button sec:authorize="isAuthenticated()" th:if="${post.user.id} == ${currentUser}" id="postDelete" class="btn btn-primary"th:value="${post.id}"
+    onclick="postDelete()">삭제</button>
+    <a sec:authorize="isAuthenticated()" th:if="${post.user.id} == ${currentUser}" id="postUpdate" class="btn btn-primary" th:value="${post.id}" th:href="@{/board/auth/post/update/}+${post.id}">수정</a>
+    <button sec:authorize="isAuthenticated()" id="recommend" class="btn btn-primary" th:value="${post.id}"  th:utext="'추천:'+${post.recommendCount}" onclick="recommend();">추천</button>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="comment-box" sec:authorize="isAuthenticated()">
+        <div class="comment-box-area">
+            <textarea class="comment-textarea" required maxlength="250" rows="5" id="content"></textarea>
+            <input type="hidden" id="postId" th:value="${post.id}">
+            <div class="btn-box">
+                <input type="submit" class="btn btn-primary"id="writeComment" onclick="writeComment()">
+            </div>
+        </div>
+    </div>
+
+    <ul id="commentArea" class="comment-list">
+
+
+        <li th:id="${comment.id}" th:each="comment : ${post.comments}" class="comment">
+
+            <div th:inline="text">
+                [[${comment.user.name}]]
+                <button onclick="deleteComment()"
+                        th:value="${comment.id}"
+                        th:if="${comment.user.id} == ${currentUser}"
+                        th:utext="삭제" class="btn btn-primary btn-sm btn-comment-delete"></button>
+            </div>
+            <div  th:utext="${comment.createdDate}"></div>
+
+
+            <div class="comment-article" th:utext="${comment.content}"></div>
+
+        </li>
+    </ul>
+
+    </div>
+
+
+    <footer th:replace="fragments/main/footer :: footerFragment"></footer>
+    <script th:src="@{\js\postView.js}"></script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymelief.org">
+<head th:replace="fragments/main/head :: headFragment"></th:replace>
+<body>
+<div class="home"><h2><a href="/main">HOME</a></h2></div>
+<form action="/login" method="post">
+    <div class="border"style="width:600px; margin:auto; padding:70px;">
+        <div style="width:400px; margin:auto;">
+            <div style="text-align:center">
+                <input class="form-control"  maxlength="20" id="email" type="text" placeholder="가입했을때 입력한 이메일을 입력해주세요" required name="email">
+            </div>
+            <input class="btn btn-primary" type="button" value="인증" id="emailSubmit" onclick="emailCheck();">
+            <div id="emailValidation" class="join-validation"></div>
+            <input maxlength="20" type="text" id="codeCheck" style="display:none">
+            <input type="button" id="submit" style="display:none" onclick="codeSubmit();">
+        </div>
+        </div>
+    </div>
+</form>
+
+
+<footer th:replace="fragments/main/footer :: footerFragment"></footer>
+    <script th:src="@{\js\findAccount.js}"></script>
+
+</body>
+</html>

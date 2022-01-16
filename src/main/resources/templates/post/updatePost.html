@@ -1,0 +1,38 @@
+<html sec:authorize="isAuthenticated()" xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/main/head :: headFragment">
+
+<body>
+<div style="list-style:none;">
+    <header th:replace="fragments/main/header :: headerFragment"></header>
+
+        <form th:action="@{/board/auth/post/update/}+${post.id}" method="post" th:object="${updateRequest}">
+            <div class="write-box">
+                <div class="write-title">
+                    <input class="write-title-textarea form-control" th:value="${post.title}"  type="text" placeholder="title" name="title">
+                </div>
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+                <div>
+                    <textarea  th:utext="${post.content}"  class="write-article-textarea" name="content" rows="12"></textarea>
+                </div>
+                <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+                <input type="hidden" name="id" th:value="${post.id}">
+                <div class="btn-box">
+                    <input type="submit" class="btn btn-primary" value="작성">
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+    <footer th:replace="fragments/main/footer :: footerFragment"></footer>
+    <script th:src="@{\js\updatePost.js}"></script>
+</div>
+
+
+</body>
+</html>
+
+
+

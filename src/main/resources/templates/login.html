@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymelief.org">
+<head th:replace="fragments/main/head :: headFragment"></th:replace>
+<body>
+<div class="home"><h2><a href="/main">HOME</a></h2></div>
+<form action="/login" method="post">
+<div class="border"style="width:600px; margin:auto; padding:70px;">
+   <div style="width:400px; margin:auto;">
+        <div style="text-align:center">
+            <input class="form-control"  maxlength="20" id="id" type="text" placeholder="ID" name="username">
+            <br>
+            <input class="form-control"  maxlength="50" id="password" type="text" placeholder="password" name="password">
+        </div>
+        <input style="margin-top:20px; width:400px;" class="btn btn-primary" type="submit" >
+
+       <a href="/user/join/joinForm">회원가입</a>
+       <a href="/user/find/idForm" style="margin-left:20px">아이디찾기</a>
+       <a href="/user/find/passForm" style="margin-left:20px">비밀번호 찾기</a>
+   </div>
+</div>
+</form>
+
+
+ <footer th:replace="fragments/main/footer :: footerFragment"></th:replace>
+
+</body>
+</html>
