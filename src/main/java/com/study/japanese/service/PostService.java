@@ -4,6 +4,7 @@ package com.study.japanese.service;
 import com.study.japanese.dto.PostDto;
 import com.study.japanese.entity.Comment;
 import com.study.japanese.entity.Post;
+import com.study.japanese.exception.EntityNotFoundExcepiton;
 import com.study.japanese.repository.BoardRepository;
 import com.study.japanese.repository.CommentRepository;
 import com.study.japanese.repository.PostRepository;
@@ -114,11 +115,13 @@ public class PostService {
         return resPostDtos;
     }
 
-
+    @Transactional
     public PostDto.WritingResponse writePost(PostDto.WritingRequest writingRequest){
         writingRequest.setBoard(boardRepository.findById(writingRequest.getBoardId())
                 .orElseThrow(() -> new EntityNotFoundException(BOARD_NOT_FOUND_EXCEPTION_MESSAGE)));
+        logger.info("request:"+writingRequest.toString());
         Post post = modelMapper.map(writingRequest,Post.class);
+        logger.info("post:"+post.toString());
         Post savedPost = postRepository.save(post);
         return modelMapper.map(savedPost, PostDto.WritingResponse.class);
 

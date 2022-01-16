@@ -41,12 +41,9 @@ public class PostDto {
 
     @Getter
     @Setter
+    @ToString
     public static class WritingRequest{
-        private int id;
-
         private User user;
-
-        private String userId;
 
         private Board board;
 

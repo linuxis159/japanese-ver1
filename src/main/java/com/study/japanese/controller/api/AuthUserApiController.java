@@ -4,7 +4,6 @@ import com.study.japanese.config.auth.PrincipalDetail;
 import com.study.japanese.dto.Code;
 import com.study.japanese.dto.UpdateEmailDTO;
 import com.study.japanese.dto.UpdatedUserNameDTO;
-import com.study.japanese.entity.User;
 import com.study.japanese.service.EmailService;
 import com.study.japanese.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -87,6 +87,7 @@ public class PostController {
         model.addAttribute("boardId",id);
         if(bindingResult.hasErrors())
             return "post/writePost";
+        logger.info("resPost:"+writingRequest.toString());
         writingRequest.setUser(curUser.getUser());
         PostDto.WritingResponse resPost = postService.writePost(writingRequest);
         model.addAttribute("post", resPost);

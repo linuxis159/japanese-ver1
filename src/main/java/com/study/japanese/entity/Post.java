@@ -17,6 +17,8 @@ import java.util.Set;
 
 
 @Getter
+@Setter
+@ToString
 @Entity
 public class Post {
     @Id
@@ -41,6 +43,9 @@ public class Post {
 
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Recommend> recommends;
 
     @CreationTimestamp()
     private Timestamp createdDate;
