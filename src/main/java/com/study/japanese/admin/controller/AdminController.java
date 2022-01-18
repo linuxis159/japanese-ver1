@@ -21,7 +21,6 @@ public class AdminController {
     @GetMapping("/analysis")
     String analysis(){
         return "admin/analysis";
-
     }
 
 

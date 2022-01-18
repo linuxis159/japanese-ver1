@@ -1,3 +1,4 @@
+
 body{
     width:100%;
     height:100%;
@@ -8,6 +9,9 @@ li{
     border 1px solid;
     border-color:#ddd;
 }
+ul{
+    padding:0;
+}
 .vertical-align{
 
     width:50%; margin:auto;
@@ -16,14 +20,14 @@ li{
 
 .join-row{
     margin-bottom:20px;
-
+}
 .header-menu{
     width:1000px;
     margin:0 auto;
-    text-align:center;"
+    text-align:center;
 }
 
-}
+
 .home{
     width:400px;
     margin:auto;
@@ -203,7 +207,15 @@ li{
 
 /* admin-side */
 .admin-sidebar{
+    width:170px;
     float:left;
     padding:20px;
-    border:1px solid;
+    border-right:1px solid;
+}
+.sidebar-list{
+    list-style:none;
+}
+.analysis-content{
+    float:left;
+    padding:30px;
 }
