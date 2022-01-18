@@ -43,7 +43,7 @@ public class EmailService{
         MimeMessage  message = emailSender.createMimeMessage();
 
         message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("BZshop 인증번호가 도착했습니다.");//제목
+        message.setSubject("Japanese 인증번호가 도착했습니다.");//제목
 
         String msgg="";
         msgg+= "<div style='margin:100px;'>";

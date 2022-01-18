@@ -17,7 +17,11 @@ li{
 .join-row{
     margin-bottom:20px;
 
-
+.header-menu{
+    width:1000px;
+    margin:0 auto;
+    text-align:center;"
+}
 
 }
 .home{
@@ -195,4 +199,11 @@ li{
 
 .main-header-box{
     align-items: center;
+}
+
+/* admin-side */
+.admin-sidebar{
+    float:left;
+    padding:20px;
+    border:1px solid;
 }

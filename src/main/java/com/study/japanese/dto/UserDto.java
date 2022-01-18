@@ -1,5 +1,6 @@
 package com.study.japanese.dto;
 
+import com.study.japanese.function.DateSetting;
 import com.study.japanese.role.UserRole;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,10 @@ public class UserDto {
    private int banCheck;
 
 
+   public String getCreatedDate(){
+      return DateSetting.setDateFormat(this.createdDate);
+   }
+
    @Getter
    @Setter
    @ToString
@@ -58,6 +63,7 @@ public class UserDto {
       @NotNull(message = "이메일인증이 제대로 되지 않았습니다")
       private String code;
    }
+
    @Getter
    @Setter
    public static class JoinResponse{

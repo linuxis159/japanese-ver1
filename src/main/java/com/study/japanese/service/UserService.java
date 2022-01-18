@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.study.japanese.constraint.Constants.Auth.ALREADY_JOINED;
 
 import static com.study.japanese.constraint.Constants.Exception.USER_NOT_FOUND_EXCEPTION_MESSAGE;
@@ -31,6 +34,12 @@ public class UserService {
         this.encodeer = encodeer;
         this.modelMapper = modelMapper;
 
+    }
+
+    public List<UserDto> getAllUser(){
+        List<User> users = userRepository.findAll();
+        return users.stream().map(user -> modelMapper.map(user,UserDto.class))
+                .collect(Collectors.toList());
     }
 
     public UserDto.InfoResponse getUserInfo(String userId){

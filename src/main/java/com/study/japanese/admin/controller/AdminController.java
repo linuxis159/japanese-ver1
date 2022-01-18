@@ -13,10 +13,17 @@ public class AdminController {
     String adminForm(){
         return "admin/admin";
     }
-    @GetMapping("/addCategry")
+    @GetMapping("/category/add")
     String addCategoryForm(){
         return "admin/addCategory";
     }
+
+    @GetMapping("/analysis")
+    String analysis(){
+        return "admin/analysis";
+
+    }
+
 
 
 
