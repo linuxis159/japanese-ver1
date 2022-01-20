@@ -9,7 +9,7 @@
           <input type="search" class="form-control" style="display:inline; width:300px; pdding:0;">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </div>
-        <div sec:authorize="isAnonymous()" class="col vertical-alin" ><a href="/auth/login/loginForm">lo</a></div>
+        <div sec:authorize="isAnonymous()" class="col vertical-alin" ><a href="/auth/login/loginForm">login</a></div>
         <div sec:authorize="isAuthenticated()" class="col vertical-alin" >
           <a href="/logout">logout</a>
           <a href="myinfo">내정보</a>
@@ -24,9 +24,10 @@
       <div class="container-fluid header-menu">
 
           <a class="dropdown-item" href="/admin/category/add">카테고리추가</a>
-           <a class="dropdown-item" href="/admin/board/add">게시판추가</a>
-           <a class="dropdown-item" href="/admin/user/manage">유저관리</a>
-           <a class="dropdown-item" href="/admin/analysis">방문자통계</a>
+           <a class="dropdown-item" href="/admin/board">게시판관리</a>
+           <a class="dropdown-item" href="/admin/post">게시물관리</a>
+           <a class="dropdown-item" href="/admin/user">유저관리</a>
+        <a class="dropdown-item" href="/admin/analysis">통계</a>
 
       </div>
     </nav>

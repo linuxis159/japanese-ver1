@@ -9,6 +9,7 @@ import com.study.japanese.repository.BoardRepository;
 import com.study.japanese.repository.CommentRepository;
 import com.study.japanese.repository.PostRepository;
 import com.study.japanese.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,34 +25,21 @@ import java.util.stream.Collectors;
 
 import static com.study.japanese.constraint.Constants.Exception.*;
 
+@RequiredArgsConstructor
 @Service
 public class PostService {
-    @Autowired
+
     private final PostRepository postRepository;
-    @Autowired
     private final BoardRepository boardRepository;
-    @Autowired
     private final UserRepository userRepository;
-    @Autowired
     private final CommentRepository commentRepository;
-    @Autowired
     private final ModelMapper modelMapper;
     Logger logger = LoggerFactory.getLogger(PostService.class);
 
-    public PostService(PostRepository postRepository,
-                       BoardRepository boardRepository,
-                       UserRepository userRepository,
-                       CommentRepository commentRepository,
-                       ModelMapper modelMapper){
-        this.postRepository = postRepository;
-        this.boardRepository = boardRepository;
-        this.userRepository = userRepository;
-        this.commentRepository = commentRepository;
-        this.modelMapper = modelMapper;
-    }
 
 
-    public PostDto.PagingPosts getPagingPosts(int id, Pageable pageable){
+
+    public PostDto.PagingPosts getPagingPostsByBoard(int id, Pageable pageable){
         Page<Post> posts = postRepository.findByBoard_Id(id, pageable)
                 .orElseThrow(() -> new NullPointerException());
 
@@ -77,11 +65,32 @@ public class PostService {
 
     }
 
-    public Page<Post> getAllPosts(Pageable pageable){
+    public PostDto.PagingPosts getAllPagingPost(Pageable pageable){
+        Page<Post> posts = postRepository.findAll(pageable);
+        Page<PostDto.PostListRow> pagingPostDtos =
+                posts.map(post -> modelMapper.map(post, PostDto.PostListRow.class));
+
+        PostDto.PagingPosts resPosts = new PostDto.PagingPosts();
+
+        resPosts.setPosts(pagingPostDtos);
+        resPosts.setSort(pageable
+                .getSort()
+                .toList()
+                .get(0)
+                .getProperty());
+        resPosts.setOrder(pageable
+                .getSort()
+                .toList()
+                .get(0)
+                .getDirection()
+                .toString());
+        return resPosts;
+
+    }
+
+    public Page<Post> getAllPost(Pageable pageable){
         Page<Post> posts = postRepository.findAll(pageable);
         return posts;
-
-
     }
 
     @Transactional

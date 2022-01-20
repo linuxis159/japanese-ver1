@@ -24,7 +24,7 @@ public class MainController {
     String mainForm(Model model, @PageableDefault(size=10,
             sort="createdDate", direction=Sort.Direction.DESC)Pageable pageable){
 
-        Page<Post> pagingPosts = postService.getAllPosts(pageable);
+        Page<Post> pagingPosts = postService.getAllPost(pageable);
         Page<PostDto.WritingResponse> postPagingDTO =  pagingPosts.map(post -> modelMapper.map(post, PostDto.WritingResponse.class));
         model.addAttribute("allPost",postPagingDTO);
         return "main";

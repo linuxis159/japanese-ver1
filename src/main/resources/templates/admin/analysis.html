@@ -1,22 +1,11 @@
-<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
 <head th:replace="fragments/admin/head :: headFragment">
-
 <body>
-<div style="list-style:none;">
-    <header th:replace="fragments/admin/header :: headerFragment"></header>
-    <div>
-        <aside th:replace="fragments/admin/aside :: asideFragment"></aside>
-        <div class="analysis-content">
-            asdfsdf
-
-        </div>
-    </div>
+<header th:replace="fragments/admin/header :: headerFragment"></header>
+<aside th:replace="fragments"></aside>
 
 
-
-
-        <footer th:replace="fragments/admin/footer :: footerFragment"></footer>
-        <script th:src="@{/js/addBoard.js}"></script>
-    </div>
+<footer th:replace="fragments/admin/footer :: footerFragment"></footer>
 </body>
 </html>

@@ -14,4 +14,5 @@ import java.util.Optional;
 public interface PostRepository  extends JpaRepository<Post,Integer> {
     Optional<Page<Post>> findByBoard_Id(@Param("boardID") int boardID, Pageable pageable);
     Optional<List<Post>> findByUser_Id(@Param("userID") String userID);
+
 }

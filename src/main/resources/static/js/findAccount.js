@@ -10,7 +10,7 @@ function emailCheck(){
             "Accept" : "application/json"
         },
         body : JSON.stringify(data)
-    }).then(res => res.json)
+    }).then(res => res.json())
     .then(data => {
            if(data === 1){
                  alert("인증번호 전송");
@@ -22,7 +22,7 @@ function emailCheck(){
           }
             else
               alert("알 수 없는 오류");
-            }
+            })
 
     }
 
@@ -30,24 +30,27 @@ function emailCheck(){
 
 function codeSubmit(){
     let data =  {
-        code : $("#codeCheck").val()
+        code : document.getElementById("codeCheck").value
      }
-     $.ajax({
-        type : "post",
-        url : "/user/findId/code/check",
-        contentType : "application/json; charset=utf-8",
-        data : JSON.stringify(data),
-        success : function(result){
-        if(result.result === 1){
+     fetch("/user/findId/code/check",{
+        method: "post",
+        headers :   {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(data)})
+        .then(res => res.json())
+        .then(data => {
+        if(data.result === 1){
             alert("코드인증 성공");
             code = result.code;
             location.href="/user/find/pass/"+result.sessionId;
         }
-        else if(result.result === 0)
+        else if(data.result === 0)
             alert("코드를 확인해주세요");
+        })
  }
- })
- }
+
+
 
  function findPass(){
     const userId = {

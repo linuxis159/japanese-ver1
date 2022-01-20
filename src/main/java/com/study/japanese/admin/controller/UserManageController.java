@@ -12,11 +12,11 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("/admin/user")
 public class UserManageController {
     private final UserService userService;
 
-    @GetMapping("/user/manage")
+    @GetMapping("")
     String  userManageForm(Model model) {
         List<UserDto> users = userService.getAllUser();
         model.addAttribute("users",users);

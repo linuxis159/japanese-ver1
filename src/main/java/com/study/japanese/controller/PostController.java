@@ -46,7 +46,7 @@ public class PostController {
                     direction = Sort.Direction.DESC)
                     Pageable pageable, Model model ) {
 
-        PostDto.PagingPosts resPosts = postService.getPagingPosts(id,pageable);
+        PostDto.PagingPosts resPosts = postService.getPagingPostsByBoard(id,pageable);
 
         model.addAttribute("sortedPosts",resPosts);
         return "post/postList";
