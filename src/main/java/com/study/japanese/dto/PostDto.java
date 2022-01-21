@@ -2,6 +2,7 @@ package com.study.japanese.dto;
 
 import com.study.japanese.entity.Board;
 import com.study.japanese.entity.Comment;
+import com.study.japanese.entity.Post;
 import com.study.japanese.entity.User;
 import com.study.japanese.function.DateSetting;
 import lombok.Getter;
@@ -10,7 +11,10 @@ import lombok.ToString;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -143,6 +147,24 @@ public class PostDto {
         private int boardId;
         private String sort;
         private String order;
+    }
+
+
+    @ToString
+    @Getter
+    @Setter
+    public static class ViewCountByDate implements Comparable<PostDto.ViewCountByDate>{
+        private String view_;
+        private Date date_;
+
+        public String getDate_() {
+            return DateSetting.setDateFormat(this.date_);
+        }
+        @Override
+            public int compareTo(PostDto.ViewCountByDate o) {
+                return this.date_.compareTo(o.date_);
+        }
+
     }
 
 

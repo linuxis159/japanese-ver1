@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="fragments/admin/head :: headFragment">
+<body>
+<header th:replace="fragments/admin/header :: headerFragment"></header>
+<aside th:replace="fragments/admin/aside :: asideFragment"></aside>
+<div class="chart">
+    <canvas id="myChart"></canvas>
+
+</div>
+
+<footer th:replace="fragments/admin/footer :: footerFragment"></footer>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:src="@{/js/analysis/lineChart.js}"></script>
+<script th:inline="javascript">
+    let data = [[${commentCountByDate}]];
+    let xData = new Array();
+    let yData = new Array();
+    for(let i = 0; i<data.length; i++){
+        xData.push(data[i].date_);
+        yData.push(data[i].commentCount_);
+    }
+
+
+    let myChartOne = document.getElementById("myChart");
+    let barChart = new Chart(myChartOne,{
+        type : 'line',
+        data : {
+         labels : xData,
+         datasets : [{
+            label : "댓글수",
+             data : yData
+            
+         }]
+        }
+    });
+</script>
+
+
+
+</body>
+</html>
