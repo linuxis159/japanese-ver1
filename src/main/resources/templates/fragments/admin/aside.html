@@ -3,10 +3,8 @@
 <div class="admin-sidebar">
     <div></div>
     <div>
-        <ul class="sidebar-list">
-            <li><a href="/admin/analysis/view">조회수분석</a></li>
-            <li><a href="/admin/analysis/post">글분석</a></li>
-            <li><a href="/admin/analysis/comment">댓글분석</a></li>
+        <ul class="sidebar-list" th:each="item : ${sidebar}">
+            <li><a th:href=${item.link} th:utext="${item.label}"></a></li>
         </ul>
     </div>
 

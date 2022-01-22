@@ -20,6 +20,6 @@ public class UserManageController {
     String  userManageForm(Model model) {
         List<UserDto> users = userService.getAllUser();
         model.addAttribute("users",users);
-        return "admin/userManage";
+        return "admin/user/userManage";
     }
 }

@@ -27,67 +27,47 @@ public class AnanysisController {
 
     Logger logger = LoggerFactory.getLogger(AnanysisController.class);
 
-    @GetMapping("")
+    @GetMapping("/main")
     String analysis(){
         return "admin/analysis/analysis";
     }
 
-    @GetMapping("/view")
+    @GetMapping("/viewCount")
     String analysisView(Model model){
-        List<AnalysisDto.ViewCountByDate> viewCountByDate = new ArrayList();
-
-        List<Object[]> viewAnalysisByDate = postRepository.viewCountByDate();
-        for(int i=0; i<viewAnalysisByDate.size(); i++){
-            AnalysisDto.ViewCountByDate data = new AnalysisDto.ViewCountByDate();
-            data.setDate_(Date.valueOf(viewAnalysisByDate.get(i)[0].toString()));
-            data.setView_(viewAnalysisByDate.get(i)[1].toString());
-            viewCountByDate.add(data);
-        }
-
-        logger.info("viewCountByDate"+viewCountByDate);
+        List<AnalysisDto.CountByDate> viewCountByDate = objectToDto(postRepository.viewCountByDate());
         Collections.sort(viewCountByDate);
-        logger.info("viewCountByDate"+viewCountByDate);
-        model.addAttribute("viewCountByDate",viewCountByDate);
-
-        return "admin/analysis/analysisView";
+        model.addAttribute("countByDate",viewCountByDate);
+        model.addAttribute("label","최근 14일간 조회 수");
+        return "admin/analysis/analysisCount";
     }
 
-    @GetMapping("/post")
+    @GetMapping("/postCount")
     String analysisPost(Model model){
-        List<AnalysisDto.PostCountByDate> postCountByDate = new ArrayList();
-
-        List<Object[]> postAnalysisByDate = postRepository.postCountByDate();
-        for(int i=0; i<postAnalysisByDate.size(); i++){
-            AnalysisDto.PostCountByDate data = new AnalysisDto.PostCountByDate();
-            data.setDate_(Date.valueOf(postAnalysisByDate.get(i)[0].toString()));
-            data.setPostCount_(postAnalysisByDate.get(i)[1].toString());
-            postCountByDate.add(data);
-        }
-        logger.info("viewCountByDate"+postCountByDate);
+        List<AnalysisDto.CountByDate> postCountByDate = objectToDto(postRepository.postCountByDate());
         Collections.sort(postCountByDate);
-        logger.info("viewCountByDate"+postCountByDate);
-        model.addAttribute("postCountByDate",postCountByDate);
-
-        return "admin/analysis/analysisPost";
+        model.addAttribute("countByDate",postCountByDate);
+        model.addAttribute("label","최근 14일간 글 수");
+        return "admin/analysis/analysisCount";
     }
 
-    @GetMapping("/comment")
+    @GetMapping("/commentCount")
     String analysisComment(Model model){
-        List<AnalysisDto.CommentCountByDate> CommentCountByDate = new ArrayList();
+        List<AnalysisDto.CountByDate> commentCountByDate = objectToDto(commentRepository.commentCountByDate());
+        Collections.sort(commentCountByDate);
+        model.addAttribute("countByDate",commentCountByDate);
+        model.addAttribute("label","최근 14일간 댓글 수");
+        return "admin/analysis/analysisCount";
+    }
 
-        List<Object[]> commentAnalysisByDate = commentRepository.commentCountByDate();
-        for(int i=0; i<commentAnalysisByDate.size(); i++){
-            AnalysisDto.CommentCountByDate data = new AnalysisDto.CommentCountByDate();
-            data.setDate_(Date.valueOf(commentAnalysisByDate.get(i)[0].toString()));
-            data.setCommentCount_(commentAnalysisByDate.get(i)[1].toString());
-            CommentCountByDate.add(data);
+    List<AnalysisDto.CountByDate> objectToDto(List<Object[]> list){
+        List<AnalysisDto.CountByDate> countByDate = new ArrayList();
+        for(int i=0; i<list.size(); i++){
+            AnalysisDto.CountByDate data = new AnalysisDto.CountByDate();
+            data.setDate(Date.valueOf(list.get(i)[0].toString()));
+            data.setCount(list.get(i)[1].toString());
+            countByDate.add(data);
         }
-        logger.info("viewCountByDate"+CommentCountByDate);
-        Collections.sort(CommentCountByDate);
-        logger.info("viewCountByDate"+CommentCountByDate);
-        model.addAttribute("commentCountByDate",CommentCountByDate);
-
-        return "admin/analysis/analysisComment";
+        return countByDate;
     }
 
 }

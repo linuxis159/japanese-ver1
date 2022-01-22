@@ -10,11 +10,10 @@
 </div>
 
 <footer th:replace="fragments/admin/footer :: footerFragment"></footer>
-<script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script th:src="@{/js/analysis/lineChart.js}"></script>
 <script th:inline="javascript">
-    let data = [[${commentCountByDate}]];
+    let data = [[${countByDate}]];
     let label = [[${label}]];
     let xData = new Array();
     let yData = new Array();
@@ -30,9 +29,9 @@
         data : {
          labels : xData,
          datasets : [{
-            label : label
+            label : label,
              data : yData
-            
+
          }]
         }
     });
