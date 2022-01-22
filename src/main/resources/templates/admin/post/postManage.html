@@ -3,8 +3,9 @@
 <head th:replace="fragments/admin/head :: headFragment">
 <body>
 <header th:replace="fragments/admin/header :: headerFragment"></header>
-<div class="postList-content">
-    <div>
+<aside th:replace="fragments/admin/aside :: asideFragment"></aside>
+<div class="admin-content">
+    <div class="postList-content">
         <ul class="post-sort">
             <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=createdDate)}+@{,DESC}">최신순</a></li>
             <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=view)}+@{,DESC}">조회수</a></li>

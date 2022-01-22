@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AnalysisCountSideBarDto {
+public class SidebarDto {
     private String link;
     private String label;
 }

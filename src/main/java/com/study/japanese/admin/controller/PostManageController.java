@@ -25,7 +25,7 @@ public class PostManageController {
             Pageable pageable){
         PostDto.PagingPosts resPosts = postService.getAllPagingPost(pageable);
         model.addAttribute("sortedPosts",resPosts);
-        return "admin/postManage";
+        return "admin/post/postManage";
 
     }
 }

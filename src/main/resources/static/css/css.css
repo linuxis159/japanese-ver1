@@ -210,6 +210,17 @@ a{
     align-items: center;
 }
 
+/*   admin   */
+.admin-content{
+    float:left;
+    border-left:1px solid;
+    border-color:#dee2e6;
+    padding:20px;
+}
+.user-list{
+    width:1000px;
+    margin:right;
+}
 /* admin-side */
 .admin-sidebar{
     width:170px;
@@ -226,9 +237,6 @@ a{
     padding:30px;
 }
 .chart{
-    float:left;
-    border-left:1px solid;
-    border-color:#dee2e6;
+
     width:800px;
-    padding:30px;
 }

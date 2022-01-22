@@ -1,0 +1,21 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/admin/head :: headFragment">
+
+<body>
+<form th:action="@{/admin/user/mail/send}" method="post" th:object="${emailMessageDto}">
+    <div class="write-box">
+        <div class="write-title">
+            <input maxlength="100" th:field="*{subject}" class="write-title-textarea form-control" type="text" required placeholder="title">
+        </div>
+        <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></div>
+        <div>
+            <textarea  maxlength="1500"th:field="*{message}" class="write-article-textarea" required rows="12"></textarea>
+        </div>
+        <div th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+        <div class="btn-box">
+            <input  class="btn btn-primary"type="submit" value="작성">
+        </div>
+    </div>
+</form>
+</body>
+</html>

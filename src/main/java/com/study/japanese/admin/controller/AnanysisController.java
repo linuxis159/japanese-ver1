@@ -27,12 +27,8 @@ public class AnanysisController {
 
     Logger logger = LoggerFactory.getLogger(AnanysisController.class);
 
-    @GetMapping("/main")
-    String analysis(){
-        return "admin/analysis/analysis";
-    }
 
-    @GetMapping("/viewCount")
+    @GetMapping(value={"/viewCount","/main"})
     String analysisView(Model model){
         List<AnalysisDto.CountByDate> viewCountByDate = objectToDto(postRepository.viewCountByDate());
         Collections.sort(viewCountByDate);

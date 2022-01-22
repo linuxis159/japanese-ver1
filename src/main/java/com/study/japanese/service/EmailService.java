@@ -1,4 +1,5 @@
 package com.study.japanese.service;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -7,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.text.html.Option;
 
+import com.study.japanese.dto.EmailMessageDto;
 import com.study.japanese.entity.User;
 import com.study.japanese.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,26 @@ public class EmailService{
 
         return message;
     }
+
+    private MimeMessage createMessage(String to, EmailMessageDto messageDto)throws Exception{
+            MimeMessage message = emailSender.createMimeMessage();
+            message.addRecipients(RecipientType.TO, to);//보내는 대상
+            message.setSubject(messageDto.getSubject());//제목
+
+            String msgg = "";
+            msgg += "<div style='margin:100px;'>";
+            msgg += "<h1>안녕하세요 Japanese입니다</h1>";
+            msgg += "<br>";
+            msgg += "<div align='center' style='border:1px solid black; font-family:verdana; padding:100px';>";
+            msgg += messageDto.getMessage();
+            msgg += "</div>";
+            msgg += "</div>";
+            message.setText(msgg, "utf-8", "html");//내용
+            message.setFrom(new InternetAddress("dlrrud147@naver.com", "김익경"));//보내는 사람
+            return message;
+
+
+    }
     //		인증코드 만들기
     public static String createKey() {
         StringBuffer key = new StringBuffer();
@@ -91,14 +113,20 @@ public class EmailService{
         return key.toString();
     }
 
-
-
-
     public void sendSimpleMessage(String to)throws Exception {
         // TODO Auto-generated method stub
-        ePw = createKey();
         MimeMessage message = createMessage(to);
         emailSender.send(message);
+
+
+    }
+
+    public void sendEmailMessages(List<String> userEmails, EmailMessageDto messageDto)throws Exception {
+        // TODO Auto-generated method stub
+        for(String to : userEmails) {
+            MimeMessage message = createMessage(to, messageDto);
+            emailSender.send(message);
+        }
 
 
     }

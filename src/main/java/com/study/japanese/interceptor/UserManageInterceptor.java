@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CountAnalysisInterceptor implements HandlerInterceptor {
+public class UserManageInterceptor implements HandlerInterceptor {
 
 
 
@@ -20,19 +20,18 @@ public class CountAnalysisInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView){
         try {
-            SidebarDto view = new SidebarDto();
-            SidebarDto post = new SidebarDto();
-            SidebarDto comment = new SidebarDto();
+            SidebarDto userList = new SidebarDto();
+            SidebarDto mailSend = new SidebarDto();
             List<SidebarDto> sidebar = new ArrayList();
-            view.setLink("/admin/analysis/viewCount");
-            view.setLabel("조회수");
-            sidebar.add(view);
-            post.setLink("/admin/analysis/postCount");
-            post.setLabel("작성된 게시글 수");
-            sidebar.add(post);
-            comment.setLink("/admin/analysis/commentCount");
-            comment.setLabel("작성된 댓글 수");
-            sidebar.add(comment);
+
+            userList.setLink("/admin/user/list");
+            userList.setLabel("유저목록");
+            sidebar.add(userList);
+
+            mailSend.setLink("/admin/user/mail/send");
+            mailSend.setLabel("유저전체 메일 전송");
+            sidebar.add(mailSend);
+
             modelAndView.addObject("sidebar",sidebar);
             assert modelAndView != null;
 
