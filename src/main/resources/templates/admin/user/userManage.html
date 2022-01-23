@@ -1,0 +1,34 @@
+<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<head th:replace="fragments/admin/head :: headFragment">
+
+<body>
+<div style="list-style:none;">
+    <header th:replace="fragments/admin/header :: headerFragment"></header>
+    <aside th:replace="fragments/admin/aside :: asideFragment"></aside>
+    <div class="admin-content">
+        <table class="table user-list">
+            <thead>
+            <tr>
+                <th class="post-title" scope="col">ID</th>
+                <th class="post-writer" scope="col">Name</th>
+                <th class="post-date" scope="col">Email</th>
+                <th class="post-view" scope="col">JoinDate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td class="post-title"><a th:utext="${user.id}"></a></td>
+                <td class="post-writer"th:utext="${user.name}"></td>
+                <td class="post-date"th:utext="${user.email}"></td>
+                <td class="post-view"th:utext="${user.createdDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    <footer th:replace="fragments/admin/footer :: footerFragment"></footer>
+    <script th:src="@{/js/addBoard.js}"></script>
+</div>
+</body>
+</html>
