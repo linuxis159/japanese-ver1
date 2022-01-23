@@ -1,7 +1,5 @@
 package com.study.japanese.security;
 
-import com.study.japanese.config.auth.PrincipalDetailService;
-import com.study.japanese.role.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

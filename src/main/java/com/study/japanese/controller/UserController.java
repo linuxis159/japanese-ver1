@@ -1,6 +1,6 @@
 package com.study.japanese.controller;
 
-import com.study.japanese.config.auth.PrincipalDetail;
+import com.study.japanese.security.PrincipalDetail;
 import com.study.japanese.dto.PostDto;
 import com.study.japanese.dto.UserDto;
 import com.study.japanese.service.CommentService;

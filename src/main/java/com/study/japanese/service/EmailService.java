@@ -6,29 +6,27 @@ import java.util.Random;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.text.html.Option;
+
 
 import com.study.japanese.dto.EmailMessageDto;
+import com.study.japanese.entity.Code;
 import com.study.japanese.entity.User;
+import com.study.japanese.repository.CodeRedisRepository;
 import com.study.japanese.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EmailService{
 
     private final JavaMailSender emailSender;
     private final UserRepository userRepository;
+    private final CodeRedisRepository codeRedisRepository;
 
     public String ePw = "empty";
 
-    public  EmailService(JavaMailSender emailSender,
-                         UserRepository userRepository){
-        this.emailSender = emailSender;
-        this.userRepository =userRepository;
-    }
 
     public int alreadyJoinedEmailCheck(String email){
         Optional<User> user = userRepository.findByEmail(email);
@@ -114,8 +112,10 @@ public class EmailService{
     }
 
     public void sendSimpleMessage(String to)throws Exception {
-        // TODO Auto-generated method stub
-        MimeMessage message = createMessage(to);
+        ePw = createKey();
+        Code code = new Code(ePw,1);
+        codeRedisRepository.save(code);
+        MimeMessage message = createMessage(to);;
         emailSender.send(message);
 
 

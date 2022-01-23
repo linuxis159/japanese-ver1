@@ -45,9 +45,9 @@ public class Constants {
         public static final int MEAIL_MAX = 100;
 
         public static final String NOT_EQUAL_PASS = "비밀번호가 일치하지 않습니다";
-
-
-
+    }
+    public class Code{
+        public static final int CODE_TIME_LIMIT = 300;
 
     }
 

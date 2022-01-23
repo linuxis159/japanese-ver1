@@ -1,4 +1,4 @@
-package com.study.japanese.config.auth;
+package com.study.japanese.security;
 
 import com.study.japanese.entity.User;
 import com.study.japanese.role.UserRole;

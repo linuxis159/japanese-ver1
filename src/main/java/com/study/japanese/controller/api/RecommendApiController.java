@@ -1,6 +1,6 @@
 package com.study.japanese.controller.api;
 
-import com.study.japanese.config.auth.PrincipalDetail;
+import com.study.japanese.security.PrincipalDetail;
 import com.study.japanese.dto.RecommendDto;
 import com.study.japanese.service.PostService;
 import com.study.japanese.service.RecommendService;

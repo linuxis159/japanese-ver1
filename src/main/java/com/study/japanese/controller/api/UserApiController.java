@@ -1,12 +1,15 @@
 package com.study.japanese.controller.api;
 
 
-import com.study.japanese.dto.Code;
+import com.study.japanese.admin.dto.CodeDto;
 import com.study.japanese.dto.EmailDto;
 import com.study.japanese.dto.UserDto;
+import com.study.japanese.entity.Code;
 import com.study.japanese.entity.User;
+import com.study.japanese.repository.CodeRedisRepository;
 import com.study.japanese.service.EmailService;
 import com.study.japanese.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
@@ -20,19 +23,16 @@ import javax.servlet.http.HttpSession;
 import static com.study.japanese.constraint.Constants.Auth.ALREADY_JOINED;
 import static com.study.japanese.constraint.Constants.User.NOT_EQUAL_PASS;
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserApiController {
 
     private final EmailService emailService;
     private final UserService userService;
+    private final CodeRedisRepository codeRedisRepository;
 
     private Logger logger = LoggerFactory.getLogger(UserApiController.class);
 
-    public UserApiController(EmailService emailService,
-                             UserService userService){
-        this.emailService = emailService;
-        this.userService = userService;
-    }
 
         @PostMapping("/join")
         public UserDto.JoinResponse join(
@@ -81,33 +81,21 @@ public class UserApiController {
         }
 
         @PostMapping("/join/email/send")
-        public int sendJoinEmail(@RequestBody EmailDto email, HttpServletRequest request) throws Exception {
+        public int sendJoinEmail(@RequestBody EmailDto email) throws Exception {
             int check = emailService.alreadyJoinedEmailCheck(email.getEmail());
             if(check == ALREADY_JOINED)
                 return ALREADY_JOINED;
             else {
-                HttpSession session = request.getSession();
                 emailService.sendSimpleMessage(email.getEmail());
-                session.setAttribute("joinCode",emailService.ePw);
                 return 0;
             }
         }
 
         @PostMapping("/join/code/check")
-        public Code checkJoinCode(@RequestBody Code code,HttpServletRequest request){
-            HttpSession session = request.getSession();
-            String emailCode = (String)session.getAttribute("joinCode");
-            logger.info("Code:"+code.getCode());
-            if(emailCode.equals(code.getCode())){
-                logger.info("Code:"+code.getCode());
-                code.setResult(1);
-                return code;
-            }
-            else {
-                code.setResult(0);
-                code.setCode("Error");
-                return code;
-            }
+        public Code checkJoinCode(@RequestBody CodeDto codeRequest){
+            Code savedCode = codeRedisRepository.findById(codeRequest.getCode()).orElseGet(() -> new Code("Not Found",0));
+
+            return savedCode;
         }
 
         @PostMapping("/findId/email/send")
@@ -130,21 +118,9 @@ public class UserApiController {
         }
         @PostMapping("/findId/code/check")
         public Code checkFindIdCode(
-                @RequestBody Code code,
-                HttpServletRequest request){
-            HttpSession session = request.getSession();
-            String emailCode = (String)session.getAttribute("findIdCode");
-            if(emailCode.equals(code.getCode())){
-                code.setResult(1);
-                code.setSessionId(session.getId());
-                return code;
-            }
-            else {
-                code.setResult(0);
-                code.setCode("Error");
-                return code;
-            }
-
+                @RequestBody String code){
+            Code savedCode = codeRedisRepository.findById(code).orElseGet(() -> new Code("Not Found",0));
+            return savedCode;
         }
         @PostMapping("/findPass/code/send")
         public int findPassCodeSend(
@@ -163,20 +139,10 @@ public class UserApiController {
 
     @PostMapping("/findPass/code/check")
     public Code checkResetPassCode(
-            @RequestBody Code code,
+            @RequestBody String code,
             HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String emailCode = (String)session.getAttribute("findPassCode");
-        if(emailCode.equals(code.getCode())){
-            code.setResult(1);
-            code.setSessionId(session.getId());
-            return code;
-        }
-        else {
-            code.setResult(0);
-            code.setCode("Error");
-            return code;
-        }
+        Code savedCode = codeRedisRepository.findById(code).orElseGet(() ->new Code("Not Found",0));
+        return savedCode;
 
     }
 

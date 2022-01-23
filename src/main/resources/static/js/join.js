@@ -1,4 +1,5 @@
 let code=null;
+const time = 300;
 function joinRequest(){
     const data = {
             id : document.getElementById("username").value,
@@ -59,6 +60,9 @@ function codeSubmit(){
                 alert("코드인증 성공");
                 code  = data.code;
            }
+           else if(data.result === 0)
+                alert("코드인증 실패 코드를 확인해주세요");
+
        })
 }
 
@@ -84,4 +88,14 @@ function emailCheck(){
                 document.getElementById("submit").style.display="block";
             }
     })
+}
+function TimerStart(){tid = setInterval("timer()",1000)};
+
+function timer(){
+    let msg = "<font color='red'>"+time+"</font>";
+    document.getElementById("ViewTimer").innerHTML = msg;
+    time--;
+    if(time < 0){
+        clearInterval(tid);
+    }
 }

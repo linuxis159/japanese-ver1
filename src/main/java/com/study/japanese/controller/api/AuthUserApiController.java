@@ -1,11 +1,13 @@
 package com.study.japanese.controller.api;
 
-import com.study.japanese.config.auth.PrincipalDetail;
-import com.study.japanese.dto.Code;
+import com.study.japanese.security.PrincipalDetail;
 import com.study.japanese.dto.UpdateEmailDTO;
 import com.study.japanese.dto.UpdatedUserNameDTO;
+import com.study.japanese.entity.Code;
+import com.study.japanese.repository.CodeRedisRepository;
 import com.study.japanese.service.EmailService;
 import com.study.japanese.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,12 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class AuthUserApiController {
     @Autowired
-    private UserService userService;
+    private final UserService userService;
     @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
+    @Autowired
+    private final CodeRedisRepository codeRedisRepository;
+
 
     @PutMapping("/auth/info/name/update/{name}")
     public UpdatedUserNameDTO updataName(
@@ -41,10 +47,7 @@ public class AuthUserApiController {
             return 1;
         else {
             try {
-                HttpSession session = request.getSession();
                 emailService.sendSimpleMessage(email);
-                session.setAttribute("user",emailService.ePw);
-                System.out.println("codeValue:"+emailService.ePw);
             } catch(MailException es){
                 es.printStackTrace();
                 return -1;
@@ -54,22 +57,10 @@ public class AuthUserApiController {
     }
 
     @PostMapping("/auth/info/code/check/{code}")
-    public Code codeCheck(@PathVariable String code,HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String epw = (String)session.getAttribute("user");
-        System.out.println("codeValue:"+epw);
+    public Code codeCheck(@PathVariable String code){
 
-        Code codeDTO = new Code();
-        if(epw.equals(code)){
-            codeDTO.setResult(1);
-            codeDTO.setCode(code);
-            return codeDTO;
-        }
-        else {
-            codeDTO.setResult(0);
-            codeDTO.setCode("Error");
-            return codeDTO;
-        }
+        Code savedCode = codeRedisRepository.findById(code).orElseGet(() -> new Code("Not Found",0));
+        return savedCode;
     }
 
     @PutMapping("/auth/info/email/update")

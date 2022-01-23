@@ -1,11 +1,10 @@
 package com.study.japanese.controller.api;
 
-import com.study.japanese.config.auth.PrincipalDetail;
+import com.study.japanese.security.PrincipalDetail;
 import com.study.japanese.dto.CommentDto;
 import com.study.japanese.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

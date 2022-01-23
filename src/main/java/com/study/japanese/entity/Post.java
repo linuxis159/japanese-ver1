@@ -1,6 +1,6 @@
 package com.study.japanese.entity;
 
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
