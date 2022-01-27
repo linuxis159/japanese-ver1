@@ -3,6 +3,7 @@ package com.study.japanese.service;
 import com.study.japanese.dto.UserDto;
 import com.study.japanese.entity.User;
 import com.study.japanese.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ import static com.study.japanese.constraint.Constants.Auth.ALREADY_JOINED;
 import static com.study.japanese.constraint.Constants.Exception.USER_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encodeer;
@@ -27,14 +29,8 @@ public class UserService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UserService(UserRepository userRepository,
-                       BCryptPasswordEncoder encodeer,
-                       ModelMapper modelMapper){
-        this.userRepository = userRepository;
-        this.encodeer = encodeer;
-        this.modelMapper = modelMapper;
 
-    }
+
 
     public List<UserDto> getAllUser(){
         List<User> users = userRepository.findAll();

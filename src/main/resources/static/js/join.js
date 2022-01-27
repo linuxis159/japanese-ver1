@@ -1,5 +1,5 @@
 let code=null;
-const time = 300;
+let time = 300;
 function joinRequest(){
     const data = {
             id : document.getElementById("username").value,
@@ -76,6 +76,7 @@ function emailCheck(){
         method : "post",
         headers :{
             "Content-Type" : "application/json"
+
         },
         body : JSON.stringify(data)
     }).then(res => res.json())
@@ -86,11 +87,12 @@ function emailCheck(){
                 alert("인증번호 전송");
                 document.getElementById("codeCheck").style.display="block";
                 document.getElementById("submit").style.display="block";
+                TimerStart();
             }
     })
 }
-function TimerStart(){tid = setInterval("timer()",1000)};
 
+function TimerStart(){tid = setInterval("timer()",1000)};
 function timer(){
     let msg = "<font color='red'>"+time+"</font>";
     document.getElementById("ViewTimer").innerHTML = msg;

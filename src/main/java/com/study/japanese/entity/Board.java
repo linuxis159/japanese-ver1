@@ -2,7 +2,6 @@ package com.study.japanese.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.Page;
 
 import javax.persistence.*;
 import java.util.List;

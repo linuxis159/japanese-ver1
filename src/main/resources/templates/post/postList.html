@@ -6,60 +6,60 @@
 <div style="list-style:none;" class="content">
     <header th:replace="fragments/main/header :: headerFragment"></header>
     <div class="postList-content">
-    <div>
-        <ul class="post-sort">
-            <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=createdDate)}+@{,DESC}">최신순</a></li>
-            <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=view)}+@{,DESC}">조회수</a></li>
+        <div>
+            <ul class="post-sort">
+                <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=createdDate)}+@{,DESC}">최신순</a></li>
+                <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=view)}+@{,DESC}">조회수</a></li>
+            </ul>
+        </div>
+        <table class="table post-list">
+            <thead>
+            <tr>
+                <th class="post-title" scope="col">title</th>
+                <th class="post-writer" scope="col">writer</th>
+                <th class="post-date" scope="col">date</th>
+                <th class="post-view" scope="col">view</th>
+                <th class="post-like" scope="col">like</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${sortedPosts.posts}">
+                <td class="post-title"><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
+                <td class="post-writer"th:utext="${post.user.name}"></td>
+                <td class="post-date"th:utext="${post.createdDate}"></td>
+                <td class="post-view"th:utext="${post.view}"></td>
+                <td class="post-like"th:utext="${post.recommendCount}"></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+        <div class="postList-bottom-btn">
+            <a sec:authorize="isAuthenticated()" class="btn btn-primary" id="writeForm" th:href="@{/board/auth/post/write/}+${sortedPosts.boardId}">글쓰기</a>
+        </div>
+        <ul class="pagination justify-content-center paging">
+            <li class="page-item">
+                <a class="page-link" th:if="0 < ${sortedPosts.posts.number}" th:href="@{${#request.getRequestURL()}(page=${sortedPosts.posts.number-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}">Previous</a>
+                <a class="page-link" th:if="0 >= ${sortedPosts.posts.number}">첫페이지</a>
+            </li>
+
+            <li class="page-item pageNum"
+                th:if="${sortedPosts.posts.totalPages} > ${sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size}"
+                th:each=" i : ${#numbers.sequence(sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+1,sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size)}">
+                <a class="page-link"  th:href="@{${#request.getRequestURL()}(page=${i-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}" th:utext="${i}"></a>
+            </li>
+
+            <li class="page-item pageNum"
+                th:if="${sortedPosts.posts.totalPages} <=  ${sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size}"
+                th:each=" i : ${#numbers.sequence(sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+1,(sortedPosts.posts.totalPages == 0) ? 1 : sortedPosts.posts.totalPages)}">
+                <a class="page-link" th:href="@{${#request.getRequestURL()}(page=${i-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}"  th:utext="${i}"></a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" th:if="${sortedPosts.posts.totalPages} > ${sortedPosts.posts.number+1}" th:href="@{${#request.getRequestURL()}(page=${sortedPosts.posts.number+1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}">Next</a>
+                <a class="page-link" th:if="${sortedPosts.posts.totalPages} <= ${sortedPosts.posts.number+1}">마지막페이지</a>
+            </li>
         </ul>
-    </div>
-    <table class="table post-list">
-        <thead>
-        <tr>
-            <th class="post-title" scope="col">title</th>
-            <th class="post-writer" scope="col">writer</th>
-            <th class="post-date" scope="col">date</th>
-            <th class="post-view" scope="col">view</th>
-            <th class="post-like" scope="col">like</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="post : ${sortedPosts.posts}">
-            <td class="post-title"><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
-            <td class="post-writer"th:utext="${post.user.name}"></td>
-            <td class="post-date"th:utext="${post.createdDate}"></td>
-            <td class="post-view"th:utext="${post.view}"></td>
-            <td class="post-like"th:utext="${post.recommendCount}"></td>
-        </tr>
-
-        </tbody>
-
-    </table>
-    <div class="postList-bottom-btn">
-        <a sec:authorize="isAuthenticated()" class="btn btn-primary" id="writeForm" th:href="@{/board/auth/post/write/}+${sortedPosts.boardId}">글쓰기</a>
-    </div>
-    <ul class="pagination justify-content-center paging">
-        <li class="page-item">
-            <a class="page-link" th:if="0 < ${sortedPosts.posts.number}" th:href="@{${#request.getRequestURL()}(page=${sortedPosts.posts.number-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}">Previous</a>
-            <a class="page-link" th:if="0 >= ${sortedPosts.posts.number}">첫페이지</a>
-        </li>
-
-        <li class="page-item pageNum"
-            th:if="${sortedPosts.posts.totalPages} > ${sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size}"
-            th:each=" i : ${#numbers.sequence(sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+1,sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size)}">
-            <a class="page-link"  th:href="@{${#request.getRequestURL()}(page=${i-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}" th:utext="${i}"></a>
-        </li>
-
-        <li class="page-item pageNum"
-            th:if="${sortedPosts.posts.totalPages} <=  ${sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+sortedPosts.posts.size}"
-            th:each=" i : ${#numbers.sequence(sortedPosts.posts.number/sortedPosts.posts.size*sortedPosts.posts.size+1,(sortedPosts.posts.totalPages == 0) ? 1 : sortedPosts.posts.totalPages)}">
-            <a class="page-link" th:href="@{${#request.getRequestURL()}(page=${i-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}"  th:utext="${i}"></a>
-        </li>
-
-        <li class="page-item">
-            <a class="page-link" th:if="${sortedPosts.posts.totalPages} > ${sortedPosts.posts.number+1}" th:href="@{${#request.getRequestURL()}(page=${sortedPosts.posts.number+1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}">Next</a>
-            <a class="page-link" th:if="${sortedPosts.posts.totalPages} <= ${sortedPosts.posts.number+1}">마지막페이지</a>
-        </li>
-    </ul>
     </div>
 
 

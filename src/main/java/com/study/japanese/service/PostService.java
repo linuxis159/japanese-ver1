@@ -4,7 +4,6 @@ package com.study.japanese.service;
 import com.study.japanese.dto.PostDto;
 import com.study.japanese.entity.Comment;
 import com.study.japanese.entity.Post;
-import com.study.japanese.exception.EntityNotFoundExcepiton;
 import com.study.japanese.repository.BoardRepository;
 import com.study.japanese.repository.CommentRepository;
 import com.study.japanese.repository.PostRepository;
@@ -31,9 +30,9 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final BoardRepository boardRepository;
-    private final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
+
     Logger logger = LoggerFactory.getLogger(PostService.class);
 
 

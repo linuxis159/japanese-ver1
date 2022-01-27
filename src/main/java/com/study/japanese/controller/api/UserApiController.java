@@ -40,11 +40,8 @@ public class UserApiController {
                 BindingResult bindingResult,
                 HttpServletRequest request){
             UserDto.JoinResponse joinResponse = new UserDto.JoinResponse();
-            HttpSession session = request.getSession();
-            String code = "empty";
 
-            if(session.getAttribute("joinCode")!=null)
-                code = (String)session.getAttribute("joinCode");
+
 
             if(bindingResult.hasErrors()){
                 joinResponse.setErrors(bindingResult.getAllErrors());
@@ -64,7 +61,7 @@ public class UserApiController {
                 return joinResponse;
             }
 
-            if(!(code.equals(joinRequest.getCode()))){
+            if(codeRedisRepository.findById(joinRequest.getCode()).isEmpty()){
                 bindingResult.addError(new FieldError("userDto","email","이메일인증이 제대로 되지 않았습니다"));
                 joinResponse.setErrors(bindingResult.getAllErrors());
                 return joinResponse;
@@ -93,7 +90,9 @@ public class UserApiController {
 
         @PostMapping("/join/code/check")
         public Code checkJoinCode(@RequestBody CodeDto codeRequest){
-            Code savedCode = codeRedisRepository.findById(codeRequest.getCode()).orElseGet(() -> new Code("Not Found",0));
+            Code savedCode = codeRedisRepository
+                    .findById(codeRequest.getCode())
+                    .orElseGet(() -> new Code("Not Found",0));
 
             return savedCode;
         }

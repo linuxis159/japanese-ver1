@@ -4,6 +4,7 @@ import com.study.japanese.dto.CommentDto;
 import com.study.japanese.entity.Comment;
 import com.study.japanese.repository.CommentRepository;
 import com.study.japanese.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,23 +19,15 @@ import static com.study.japanese.constraint.Constants.Exception.COMMENT_NOT_FOUN
 import static com.study.japanese.constraint.Constants.Exception.POST_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
+@RequiredArgsConstructor
 public class CommentService {
-    @Autowired
     private final CommentRepository commentRepository;
-    @Autowired
     private final PostRepository postRepository;
-    @Autowired
     private final ModelMapper modelMapper;
 
     Logger logger = LoggerFactory.getLogger(CommentService.class);
 
-    public CommentService(CommentRepository commentRepository,
-                          PostRepository postRepository,
-                          ModelMapper modelMapper){
-        this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
-        this.modelMapper = modelMapper;
-    }
+
 
     public CommentDto.Response writeComment(CommentDto.WritingRequest writingRequest){
         writingRequest.setPost(postRepository.findById(writingRequest.getPostId())
@@ -42,6 +35,7 @@ public class CommentService {
 
         Comment comment = modelMapper.map(writingRequest,Comment.class);
         logger.info("COMMENT:"+comment);
+
 
         Comment savedComment = commentRepository.save(comment);
         logger.info("SAVED_COMMENT:"+savedComment);

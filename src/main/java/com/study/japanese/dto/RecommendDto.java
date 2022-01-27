@@ -4,10 +4,7 @@ import com.study.japanese.entity.Post;
 import com.study.japanese.entity.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 @Getter
 @Setter

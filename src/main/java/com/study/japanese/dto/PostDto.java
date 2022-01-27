@@ -114,26 +114,16 @@ public class PostDto {
 
     @Getter
     @Setter
-    public static class UserCommentedPostRow{
-        private int id;
-        private UserDto user;
-        private String title;
-        private Timestamp createdDate;
-        private int view;
-        private int recommendCount;
-
-        public String getCreatedDate() {
-            return DateSetting.setDateFormat(this.createdDate);
-        }
+    public static class UserCommentedPostRow extends PostDto.PostListRow{
 
         @Override
         public int hashCode(){
-            return Objects.hash(id);
+            return Objects.hash(super.id);
         }
         @Override
         public boolean equals(Object o){
             PostDto.UserCommentedPostRow target = (PostDto.UserCommentedPostRow)o;
-            return target.id == this.id;
+            return target.getId() == super.getId();
 
         }
 

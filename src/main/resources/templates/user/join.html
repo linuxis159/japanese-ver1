@@ -37,10 +37,10 @@
   <div class="join-row">
    <div>이메일확인</div>
    <input maxlength="100" type="text" class="form-control" id="email">
-   <input class="btn btn-primary" type="button" value="전송" id="emailSubmit" onclick="emailCheck(); TimerStart();">
+   <input class="btn btn-primary" type="button" value="전송" id="emailSubmit" onclick="emailCheck();">
    <div id="emailValidation" class="join-validation"></div>
        <input maxlength="20" type="text" id="codeCheck" style="display:none">
-       <input type="button" id="submit" style="display:none" onclick="codeSubmit();">
+       <input type="button" value="전송" id="submit" style="display:none" onclick="codeSubmit();">
        <div id="ViewTimer"></div>
   </div>
   <div style="text-align:center; margin:top:20px;"><input class="btn btn-primary" id="submit" type="submit" value="가입" onclick="joinRequest();"></div>

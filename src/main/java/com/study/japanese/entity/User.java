@@ -3,7 +3,6 @@ package com.study.japanese.entity;
 import com.study.japanese.role.UserRole;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 

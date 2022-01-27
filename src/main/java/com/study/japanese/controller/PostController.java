@@ -142,7 +142,7 @@ public class PostController {
                     embedYoutubeLink = YOUTUBE_EMBED_PATTERN + content.substring(i+YOUTUBE_LINK_PATTERN.length(),i+YOUTUBE_LINK_PATTERN.length()+11);
                     replecedYoutueLink = "<div>" +
                             "<div>" +
-                            "<embed src=\"" + embedYoutubeLink +"?version3" + "\" width=\"560\" height=\"315\" allowfullscreen=\"true\">" +
+                            "<embed class='youtube-video' src=\"" + embedYoutubeLink +"?version3" + "\" width=\"560\" height=\"315\" allowfullscreen=\"true\">" +
                             "</div><a href=\"" + youtubeLink + "\" target=\"_blank\">" +
                             youtubeLink + "</a></div>";
                     content.replace(content.substring(i, YOUTUBE_LINK_PATTERN.length() + i + 10), replecedYoutueLink);

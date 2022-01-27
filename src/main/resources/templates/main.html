@@ -1,27 +1,28 @@
-<html xmlns="http://www.thymelief.org" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/laout">
+<!DOCTYPE html>
+<html>
     <head th:replace="fragments/main/head :: headFragment">
 
     <body>
-      <div style="list-style:none;" class="content">
-        <header th:replace="fragments/main/header :: headerFragment"></header>
-          <div>
-
-             <table class="table w-auto small" style="width:600px">
-                 <div class="main-header">최신글</div>
-
-                  <tbody>
-                  <tr th:each="post : ${allPost}">
-                      <td><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
-                      <td th:utext="${post.createdDate}"></td>
-                      <td th:utext="${post.view}"></td>
-                  </tr>
-                  </tbody>
-              </table>
-          </div>
-          <ul class="pagination justify-content-center">
-           <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number-1})}">Previous</a></li>
-              <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number+1})}">Next</a></li>
-          </ul>
+      <div id="wrap">
+        <header id="header" th:replace="fragments/main/header :: headerFragment"></header>
+          <section id="section">
+             <div>
+                 <div id="simple-list-wrap">
+                     <div class="main-header">최신글</div>
+                     <ul id="simple-list">
+                        <li th:each="post : ${allPost}"id="simple-list-item">
+                            <div>
+                                <a th:href="@{/board/view/}+${post.id}" th:utext="${post.title}"></a>
+                            </div>
+                        </li>
+                     </ul>
+                 </div>
+                 <ul class="pagination justify-content-center">
+                     <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number-1})}">Previous</a></li>
+                     <li class="page-item"><a class="page-link" th:href="@{/main(page=${allPost.number+1})}">Next</a></li>
+                 </ul>
+             </div>
+          </section>
           <footer th:replace="fragments/main/footer :: footerFragment"></footer>
        </div> 
     </body>

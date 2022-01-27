@@ -1,11 +1,15 @@
 
-body{
+/*@media (max-width:480px){
     width:100%;
-    height:100%;
+
+}*/
+body{
     border-color:#dee2e6;
     list-style:none;
+    font-size:.9rem;
 }
 li{
+    list-style:none;
     border 1px solid;
     border-color:#ddd;
 }
@@ -17,6 +21,96 @@ a{
     color:black;
     text-decoration:none;
 }
+
+/*****mainPage*****/
+#wrap{
+    min-height:800px;
+}
+
+#header{
+    width:100vw;
+    height:20vh%;
+}
+#section{
+    width:70vw;
+    margin:0 auto;
+}
+@media(max-width:1240px){
+    #section{
+        width:100vw;
+    }
+}
+#simple-list-wrap{
+    min-height:400px;
+}
+#simple-list{
+    float:left;
+    padding:2px;
+    width:350px;
+}
+#simple-list-item{
+    padding:2px;
+    border:1px solid;
+    border-color:#ddd;
+}
+
+#simple-info{
+    display:inline-block;
+    float:right;
+}
+/****** header *******/
+.main-header{
+
+}
+@media(max-width:880){
+    .main-header{
+        width:100vw;
+    }
+}
+#nav-header{
+    width:1000px;
+    margin:0 auto;
+    text-align:center;
+}
+@media(max-width:990px){
+    #nav-header{
+        width:100vw;
+    }
+}
+
+/*postView*/
+.post-article{
+    padding:20px;
+    width:700;
+    margin-bottom:200px;
+}
+
+@media(max-width:980px){
+    .post-article{
+        width:90vw;
+    }
+}
+.comment{
+    border-bottom:1px solid;
+    border-color:#ddd;
+    list-style:none;
+}
+
+.comment-article{
+    margin-top :20px;
+    margin-bottom:20px;
+}
+
+.youtube-video{
+
+}
+@media(max-width:990px){
+    .youtube-video{
+        width:80vw;
+    }
+}
+
+
 .vertical-align{
 
     width:50%; margin:auto;
@@ -41,28 +135,24 @@ a{
     padding-bottom:50px;
 }
 .content{
-    width:1280;
+    width:80%;
     margin:auto;
+}
+@media(max-width:980px){
+     .content{
+        width:100vw;
+    }
 }
 .postList-content{
   width:1000px;
   margin:auto;
-
 }
-.post-article{
-    width:700;
-    margin-bottom:200px;
-}
-.comment{
-    border-bottom:1px solid;
-    border-color:#ddd;
-    list-style:none;
+@media(max-width:980px){
+    .postList-content{
+        width:100vw;
+    }
 }
 
-.comment-article{
-    margin-top :20px;
-    margin-bottom:20px;
-}
 .active{
     background-color:blue;
     color:white;
@@ -70,6 +160,12 @@ a{
 .post-list{
     width:1000px;
     margin:auto;
+}
+@media(max-width:980px){
+    .post-list{
+        width:90vw;
+    }
+
 }
 
 .post-title{
@@ -151,7 +247,7 @@ a{
     margin-bottom:50px;
     padding-top:50px;
     padding-bottom:50px;
-    text-align:center
+    text-align:center;
 
 }
 .view-view-count{

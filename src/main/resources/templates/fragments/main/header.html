@@ -2,7 +2,7 @@
 <html mlns="http://www.thymelief.org">
 <header th:fragment="headerFragment">
     <div style="margin-top:30px; margin-bottom:30px;">
-        <div class="container" style="width: 1000px; margin:auto; text-align:center;">
+        <div class="container main-header">
             <div class="row main-header-box">
                 <div class="col vertical-align"><a href="/main"><img src="/img/home.jpg"></img></a></div>
                 <div class="col-6 vertical-align">
@@ -19,9 +19,9 @@
     </div>
                                                         <!--navbar-->
 
-    <div>
+    <div id="nav-header-wrap">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:50px;">
-            <div class="container-fluid" style="width:1000px;  margin:0 auto; text-align:center;">
+            <div class="container-fluid" id="nav-header">
 
                 <li class="nav-item dropdown" th:each="category : ${categories}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
