@@ -42,7 +42,7 @@ public class User {
 
     @Column(length = 20, columnDefinition = "varchar2(20) default 'USER'")
     @Enumerated(value = EnumType.STRING)
-    private UserRole role = UserRole.USER;  //Enum
+    private UserRole role = UserRole.USER;
 
     @Column(length = 1)
     @ColumnDefault("0")

@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <tr th:each="post : ${sortedPosts.posts}">
-                <td class="post-title"><a th:utext="${post.title}" th:href="@{/board/view/}+${post.id}"></a></td>
+                <td class="post-title"><a th:utext="${post.title}+' ['+${post.comments.size}+']'" th:href="@{/board/view/}+${post.id}"></a></td>
                 <td class="post-writer"th:utext="${post.user.name}"></td>
                 <td class="post-date"th:utext="${post.createdDate}"></td>
                 <td class="post-view"th:utext="${post.view}"></td>

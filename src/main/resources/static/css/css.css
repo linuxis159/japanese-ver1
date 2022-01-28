@@ -46,11 +46,11 @@ a{
 #simple-list{
     float:left;
     padding:2px;
-    width:350px;
+    min-width:500px;
 }
 #simple-list-item{
-    padding:2px;
-    border:1px solid;
+    padding:5px;
+    border-bottom:1px solid;
     border-color:#ddd;
 }
 
@@ -58,9 +58,12 @@ a{
     display:inline-block;
     float:right;
 }
+.simple-title{
+    margin-right:20px;
+}
 /****** header *******/
 .main-header{
-
+    text-align:center;
 }
 @media(max-width:880){
     .main-header{
@@ -81,7 +84,7 @@ a{
 /*postView*/
 .post-article{
     padding:20px;
-    width:700;
+    width:900px;
     margin-bottom:200px;
 }
 
@@ -109,7 +112,39 @@ a{
         width:80vw;
     }
 }
-
+/*LoginPage*/
+.login-wrap{
+    margin:auto;
+}
+.login-area{
+    padding:70px;
+    width:600px;
+    margin:auto;
+    border:1px solid;
+    border-color:#ddd;
+}
+@media(max-width:980px){
+    .login-area{
+        width:100vw;
+    }
+}
+.login-btn{
+    margin-top:20px;
+    width:100%;
+}
+/*joinPage*/
+.join-wrap{
+    width:600px;
+    padding:80px;
+    border:1px solid;
+    border-color:#ddd;
+    margin:0 auto;
+}
+@media(max-width:980){
+    .join-wrap{
+        width:100vw;
+    }
+}
 
 .vertical-align{
 
@@ -260,7 +295,7 @@ a{
 .join-Validation{
     color:red;
 }
-.main-header{
+.simple-list-label{
     margin-top:20px;
     margin-bottom:20px;
 }

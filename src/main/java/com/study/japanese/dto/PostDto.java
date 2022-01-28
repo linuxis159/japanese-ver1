@@ -103,6 +103,7 @@ public class PostDto {
         private int id;
         private UserDto user;
         private String title;
+        private List<CommentDto> comments;
         private Timestamp createdDate;
         private int view;
         private int recommendCount;
@@ -110,6 +111,11 @@ public class PostDto {
         public String getCreatedDate() {
             return DateSetting.setDateFormat(this.createdDate);
         }
+    }
+    @Getter
+    @Setter
+    public static class LatestPost extends PostDto.PostListRow {
+        private BoardDto board;
     }
 
     @Getter

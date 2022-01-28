@@ -43,7 +43,7 @@ public class PostService {
                 .orElseThrow(() -> new NullPointerException());
 
         Page<PostDto.PostListRow> pagingPostDtos =
-                posts.map(post -> modelMapper.map(post, PostDto.PostListRow.class));
+                posts.map(post -> modelMapper.map(post, PostDto.LatestPost.class));
 
         PostDto.PagingPosts resPosts = new PostDto.PagingPosts();
 

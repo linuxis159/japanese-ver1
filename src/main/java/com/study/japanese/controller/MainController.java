@@ -2,6 +2,7 @@ package com.study.japanese.controller;
 
 import com.study.japanese.dto.PostDto;
 import com.study.japanese.entity.Post;
+import com.study.japanese.security.PrincipalDetail;
 import com.study.japanese.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,8 @@ public class MainController  {
             sort="createdDate", direction=Sort.Direction.DESC)Pageable pageable){
 
         Page<Post> pagingPosts = postService.getAllPost(pageable);
-        Page<PostDto.WritingResponse> postPagingDto =  pagingPosts.map(post -> modelMapper.map(post, PostDto.WritingResponse.class));
+        Page<PostDto.LatestPost> postPagingDto =
+                pagingPosts.map(post -> modelMapper.map(post, PostDto.LatestPost.class));
         model.addAttribute("allPost",postPagingDto);
         return "main";
     }

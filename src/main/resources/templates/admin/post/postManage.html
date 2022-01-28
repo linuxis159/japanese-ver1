@@ -37,9 +37,7 @@
         </tbody>
 
     </table>
-    <div class="postList-bottom-btn">
-        <a sec:authorize="isAuthenticated()" class="btn btn-primary" id="writeForm" th:href="@{/board/auth/post/write/}+${sortedPosts.boardId}">글쓰기</a>
-    </div>
+
     <ul class="pagination justify-content-center paging">
         <li class="page-item">
             <a class="page-link" th:if="0 < ${sortedPosts.posts.number}" th:href="@{${#request.getRequestURL()}(page=${sortedPosts.posts.number-1},size=${sortedPosts.posts.size},sort=${sortedPosts.sort})}+@{,}+${sortedPosts.order}">Previous</a>

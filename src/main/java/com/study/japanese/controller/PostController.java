@@ -5,6 +5,7 @@ import com.study.japanese.dto.PostDto;
 import com.study.japanese.repository.PostRepository;
 import com.study.japanese.service.BoardService;
 import com.study.japanese.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,16 +25,14 @@ import static com.study.japanese.constraint.Constants.Post.YOUTUBE_EMBED_PATTERN
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/board")
 public class PostController {
-    @Autowired
-    private BoardService boardService;
-    @Autowired
-    private PostService postService;
-    @Autowired
-    private PostRepository postRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+
+    private final BoardService boardService;
+    private final PostService postService;
+    private final PostRepository postRepository;
+    private final ModelMapper modelMapper;
 
     Logger logger = LoggerFactory.getLogger(PostController.class);
 
@@ -62,6 +61,7 @@ public class PostController {
         //유튜브영상주소 삽입시 페이지에서 영상 재생가능하도록 문자열 처리
         String replacedContnet = replaceYoutubeLink(resPostDto.getContent());
         resPostDto.setContent(replacedContnet);
+        resPostDto.setContent(resPostDto.getContent().replace("\r\n","<br>"));
 
         model.addAttribute("post", resPostDto);
 

@@ -4,10 +4,13 @@ import com.study.japanese.entity.User;
 import com.study.japanese.role.UserRole;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 @Getter
 public class PrincipalDetail implements UserDetails {
     private User user;
@@ -48,12 +51,8 @@ public class PrincipalDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collectors = new ArrayList();
-        collectors.add(() -> {
-            return "ROLE_"+user.getRole().toString();
-        });
-
-
-        return null;
+        List<GrantedAuthority> list = new ArrayList();
+        list.add(new SimpleGrantedAuthority("ROLE_"+user.getRole().toString()));
+        return list;
     }
 }

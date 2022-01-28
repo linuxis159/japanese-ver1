@@ -16,7 +16,7 @@ public class BoardDto {
 
     private Category category;
 
-    private String boardName;
+    private String name;
 
     private List<PostDto> posts;
 }
