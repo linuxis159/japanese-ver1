@@ -1,0 +1,35 @@
+.post-sort{
+    margin-top:20px;
+    padding:0;
+    list-style:none;
+}
+.post-title{
+    width:500px;
+}
+
+.post-writer{
+    width:100px;
+}
+
+.post-date{
+    width:300px;
+}
+
+.post-view{
+    width:50px;
+}
+
+.post-like{
+    width:50px;
+}
+
+.postList-bottom-btn{
+    margin-top:20px;
+    margin-bottom:20px;
+    float:right;
+}
+
+.paging{
+    margin-top:40px;
+
+}

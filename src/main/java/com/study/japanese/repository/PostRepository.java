@@ -14,6 +14,7 @@ import java.util.Optional;
 
 public interface PostRepository  extends JpaRepository<Post,Integer> {
     Optional<Page<Post>> findByBoard_Id(@Param("boardID") int boardID, Pageable pageable);
+    Optional<List<Post>> findByBoard_Id(@Param("boardID") int boardID);
     Optional<List<Post>> findByUser_Id(@Param("userID") String userID);
 
     @Query(value = "SELECT TO_CHAR(CREATED_DATE,'yyyy-mm-dd') as date_ ,sum(post_view) as view_ FROM post group by TO_CHAR(created_date,'yyyy-mm-dd')", nativeQuery = true)

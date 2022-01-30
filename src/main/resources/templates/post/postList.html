@@ -3,16 +3,16 @@
 
 <body>
 
-<div style="list-style:none;" class="content">
+<div style="list-style:none;" >
     <header th:replace="fragments/main/header :: headerFragment"></header>
-    <div class="postList-content">
+    <section id="section">
         <div>
             <ul class="post-sort">
                 <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=createdDate)}+@{,DESC}">최신순</a></li>
                 <li><a th:href="@{${#request.getRequestURL()}(page=0,size=${sortedPosts.posts.size},sort=view)}+@{,DESC}">조회수</a></li>
             </ul>
         </div>
-        <table class="table post-list">
+        <table class="table">
             <thead>
             <tr>
                 <th class="post-title" scope="col">title</th>
@@ -60,7 +60,7 @@
                 <a class="page-link" th:if="${sortedPosts.posts.totalPages} <= ${sortedPosts.posts.number+1}">마지막페이지</a>
             </li>
         </ul>
-    </div>
+    </section>
 
 
 

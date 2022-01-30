@@ -2,13 +2,13 @@ package com.study.japanese.dto;
 
 import com.study.japanese.entity.Board;
 import com.study.japanese.entity.Comment;
-import com.study.japanese.entity.Post;
 import com.study.japanese.entity.User;
 import com.study.japanese.function.DateSetting;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
@@ -64,6 +64,8 @@ public class PostDto {
     @Setter
     public static class WritingResponse{
         private int id;
+
+        private int boardId;
 
         private UserDto user;
 
@@ -143,6 +145,17 @@ public class PostDto {
         private int boardId;
         private String sort;
         private String order;
+        public void setVariable(Page<PostListRow> posts, Pageable pageable){
+            setPosts(posts);
+            setSort(pageable.getSort().toList().get(0).getProperty());
+            setOrder(pageable.getSort().toList().get(0).getDirection().toString());
+        }
+        public void setVariable(Page<PostListRow> posts,int boardId,Pageable pageable){
+            setPosts(posts);
+            setBoardId(boardId);
+            setSort(pageable.getSort().toList().get(0).getProperty());
+            setOrder(pageable.getSort().toList().get(0).getDirection().toString());
+        }
     }
 
 

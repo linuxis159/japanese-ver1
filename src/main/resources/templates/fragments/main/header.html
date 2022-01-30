@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html mlns="http://www.thymelief.org">
 <header th:fragment="headerFragment">
-    <div style="margin-top:30px; margin-bottom:30px;">
-        <div class="container main-header">
+    <div id="main-header-wrap">
+        <div class="container-fluid main-header">
             <div class="row main-header-box">
-                <div class="col vertical-align"><a href="/main"><img src="/img/home.jpg"></img></a></div>
-                <div class="col-6 vertical-align">
-                    <input type="search" class="form-control" style="display:inline; width:300px; pdding:0;">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <div class="col vertical-align">
+                    <a href="/main"><img src="/img/home.jpg"></img></a>
                 </div>
-                <div sec:authorize="isAnonymous()" class="col vertical-alin" ><a href="/login/loginForm" class="btn btn-primary">Login</a></div>
-                <div sec:authorize="isAuthenticated()" class="col vertical-alin" >
+                <div class="col-8 vertical-align">
+                    <form th:action="${#httpServletRequest.requestURI}"  class="input-group mb-3" id="search" method="get">
+                        <input type="text" maxlength="30" class="form-control" th:placeholder="${placeholder}" name="query">
+                        <button class="btn btn-outline-success" id="button-addon2" type="submit">Search</button>
+                    </form>
+                </div>
+                <div sec:authorize="isAnonymous()" class="col">
+                    <a href="/login/loginForm" class="btn btn-primary">Login</a>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="col" >
                     <a href="/logout">logout</a>
                     <a href="/user/auth/info/myInfo">내정보</a>
                 </div>
@@ -19,25 +25,19 @@
     </div>
                                                         <!--navbar-->
 
-    <div id="nav-header-wrap">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:50px;">
-            <div class="container-fluid" id="nav-header">
-
-                <li class="nav-item dropdown" th:each="category : ${categories}">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                       th:utext="${category.name}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div id="nav-header-wrap" class="bg-light">
+            <div class="container row" id="nav-header">
+                <div class="dropdown col catagory-item" th:each="category : ${categories}">
+                    <a th:utext="${category.name}" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     </a>
-                    <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
-                      <li th:each="board : ${category.boardList}">
-                          <a id="boardId" th:href="@{/board/list/}+${board.id}" class="dropdown-item" th:utext="${board.name}"></a>
-                      </li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li th:each="board : ${category.boardList}">
+                            <a id="boardId"  th:href="@{/board/list/}+${board.id}" th:utext="${board.name}" class="dropdown-item"></a>
+                        </li>
+
                     </ul>
-                  </li>
-
-
-
+                </div>
             </div>
-        </nav>
     </div>
 
 </header>
