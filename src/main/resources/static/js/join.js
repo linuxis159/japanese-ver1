@@ -1,5 +1,6 @@
 let code=null;
-let time = 300;
+let tid;
+let time = 0;
 function joinRequest(){
     const data = {
             id : document.getElementById("username").value,
@@ -92,8 +93,13 @@ function emailCheck(){
     })
 }
 
-function TimerStart(){tid = setInterval("timer()",1000)};
+function TimerStart(){
+time = 300;
+if(tid != null)
+    clearInterval(tid);
+tid = setInterval("timer()",1000)};
 function timer(){
+
     let msg = "<font color='red'>"+time+"</font>";
     document.getElementById("ViewTimer").innerHTML = msg;
     time--;
