@@ -1,0 +1,31 @@
+#simple-list-wrap{
+    margin-top :50px;
+    min-height:400px;
+}
+#simple-list{
+    float:left;
+    padding:2px;
+    min-width:500px;
+}
+.simple-list-label{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#simple-list-item{
+    padding:5px;
+    border-bottom:1px solid;
+    border-color:#ddd;
+}
+@media(max-width:780px){
+    #simple-list-item{
+        width:80vw;
+    }
+}
+#simple-info{
+    display:inline-block;
+    float:right;
+}
+.simple-title{
+    margin-right:20px;
+}

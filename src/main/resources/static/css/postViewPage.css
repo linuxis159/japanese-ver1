@@ -44,6 +44,11 @@
     border-top :1px solid;
 
 }
+
+.btn-comment-delete{
+    float:right;
+}
+
 .view-view-count{
     padding-right:5px;
     float:right;

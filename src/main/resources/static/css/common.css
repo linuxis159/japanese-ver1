@@ -27,6 +27,10 @@ a{
     margin-top:30px;
     margin-bottom:30px;
 }
+.main-header-box{
+    width:70vw;
+    margin:0 auto;
+}
 
 .main-header{
     text-align:center;

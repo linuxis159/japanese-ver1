@@ -1,0 +1,36 @@
+.home{
+    width:80vw;
+    margin:auto;
+    text-align:center;
+    padding-top:100px;
+    padding-bottom:50px;
+}
+.content{
+    width:80%;
+    margin:auto;
+}
+@media(max-width:980px){
+     .content{
+        width:100vw;
+    }
+}
+
+.login-wrap{
+    margin:auto;
+}
+.login-area{
+    padding:70px;
+    width:600px;
+    margin:auto;
+    border:1px solid;
+    border-color:#ddd;
+}
+@media(max-width:980px){
+    .login-area{
+        width:100vw;
+    }
+}
+.login-btn{
+    margin-top:20px;
+    width:100%;
+}
